@@ -70,7 +70,7 @@ int main() {
     // t1.join();
     // t2.join();
     // std::copy(vec.begin(),vec.end(),std::ostream_iterator<int>(std::cout," "));
-    // std::cout<<std::endl;
+    // std::cout<<std::endl; 厚礼蟹
     std::thread t1(produce);
     std::thread t2(consumer);
     t1.join();
