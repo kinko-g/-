@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/simple_webserver.dir/main.cc.o -o simple_webserver  -lpthread 
