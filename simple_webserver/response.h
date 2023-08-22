@@ -100,10 +100,6 @@ public:
     }
 };
 
-struct NullResponse {
-
-};
-
 class ImageResponse final : public AbstractResponseProxy<IMAGE>
 {
 public:

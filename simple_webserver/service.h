@@ -8,50 +8,104 @@
 #include "http.h"
 #include "response.h"
 
+static bool is_ambiguous_route(const std::string& route) {
+    for(auto& c : route) {
+        if(c == '$') return true;
+    }
+    return false;
+}
+
 using Request = HttpReqProto;
 class MetaService {
 public :
     using ServiceType = std::function <Response(Request &)>;
+    struct RouteInfo {
+        bool is_ambiguous;
+        ServiceType cb;
+    };
     bool contains(const std::string& route) {
         return service_mapper_.count(route) > 0 || alias2main_.count(route);
     }
+
+    std::string contains_pattern(const std::string& route) {
+        if(service_mapper_.count(route) > 0 && !service_mapper_[route].is_ambiguous) {
+            return route;
+        }
+        std::stringstream ss{route};
+        std::vector<std::string> route_params{};
+        std::string param{};
+        while(std::getline(ss,param,'/')) {
+            route_params.push_back(param);
+        }
+        int i{};
+        for(auto& p : service_mapper_) {
+            std::cout << p.first << "\t " << p.second.is_ambiguous << "\n";
+            if(!p.second.is_ambiguous) {
+                continue;
+            }
+            i = 0;
+            std::stringstream ss{p.first};
+            while(std::getline(ss,param,'/')) {
+                std::cout << route_params[i] << "\t" << param << "\n";
+                if(i >= route_params.size() || (param != route_params[i] && param != "$")) {
+                    break;
+                }
+                i ++;
+            }
+            std::cout << "i : " << i << "\n";
+            if(i == route_params.size()) {
+                std::cout << "pattern matched\n";
+                return p.first;
+            }
+        }
+        return "";
+    }
 public:
     template <class F>
-    void add_service(const std::string& url ,F&& f,std::vector<const char*>&& alias) {
-        for(auto& alia : alias) {
-            alias2main_.insert({std::string(alia),url});
+    void add_service(std::string& url ,F&& f,std::vector<const char*>&& alias) {
+        if(url.back() == '/') {
+            url.pop_back();
         }
-        service_mapper_.insert({url,[f](Request& req) -> Response {
-            return f(req);
-        }});
+        for(auto& alia : alias) {
+            auto alia_s = std::string(alia);
+            if(alia_s.back() == '/') {
+                alia_s.pop_back();
+            }
+            alias2main_.insert({alia_s,url});
+        }
+
+        RouteInfo route_info {
+            is_ambiguous_route(url),
+            [f](Request& req) -> Response {
+                return f(req);
+            }
+        };
+        service_mapper_.insert({url,std::move(route_info)});
         for(auto& p : service_mapper_) {
-            std::cout << "add service : " << p.first << "\n";
+            // std::cout << "add service : " << p.first << "\n";
         }
     }
     Response invoke(const std::string& route,Request& req) {
         if (service_mapper_.count(route) > 0) {
-            return service_mapper_[route](req);
+            return service_mapper_[route].cb(req);
         }
         else if(alias2main_.count(route) > 0) {
-            std::cout << " route :" << route <<" alia call \n ";
-             return service_mapper_[alias2main_[route]](req);
+            // std::cout << " route :" << route << " alia call \n ";
+            return service_mapper_[alias2main_[route]].cb(req);
         }
         return nullptr;
     }
 private:
-    std::unordered_map<std::string,ServiceType> service_mapper_;
+    std::unordered_map<std::string,RouteInfo> service_mapper_;
     std::unordered_map<std::string,std::string> alias2main_;
 };
 
 struct __init {
     template <class T,class F,class... Args>
     __init(std::string val,T that,F && f,Args... alias) {
-        std::cout << val << "\t";
-        std::cout << " alias :" << sizeof...(alias)<< "\n";
+        // std::cout << val << "\t";
+        // std::cout << " alias :" << sizeof...(alias) << "\n";
         std::vector<const char *> alia_arr = { alias ...};
-        // for(auto& alia : alia_arr) {
-        //     std::cout << " alia :" << alia << "\n";
-        // }
         that->add_service(val,f,std::move(alia_arr));
     }
 };
@@ -76,7 +130,13 @@ public:
     ROUTER(favicon,"/favicon.ico"); 
     Response favicon(Request& req) {
         std::cout << "favicon\n";
-        return "<h1>hello</>";
+        std::string filename = "logo_64.png";
+        return ImageResponse(filename);
+    }
+    ROUTER(image,"/image/$"); 
+    Response image(Request& req) {
+        std::string filename = "img.png";
+        return ImageResponse(filename);
     }
     friend class __init;
 };

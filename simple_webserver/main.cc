@@ -18,11 +18,12 @@
 #include "http.h"
 
 using namespace boost;
+
 class NonCopyable {
 public :
     NonCopyable ()= default ;
-    NonCopyable ( const NonCopyable &)= delete ;
-    NonCopyable & operator =( const NonCopyable &)= delete ;
+    NonCopyable ( const NonCopyable &) = delete;
+    NonCopyable & operator =( const NonCopyable &) = delete;
     virtual ~ NonCopyable ()= default ;
 };
 
@@ -156,11 +157,11 @@ public :
         std::bind(&AsyncServer::do_accept,this,session_sp,std::placeholders::_1));
     }
     void on_message_handler(std::shared_ptr<Session> session,HttpReqProto req_proto) {
-        std :: cout <<" recved data from uuid :"<< session -> uuid ()<<" \n ";
+        std::cout << "recved data from uuid :"<< session->uuid ()<<" \n ";
         auto res = service_container_.dispatch(req_proto);
-        std :: cout <<" dispatch end \n";
+        std::cout <<" dispatch end \n";
         if (!res.is_null()){
-            std::cout << " res is not null , proto :" << res.proto().to_string()<< "\n"; 
+            std::cout << " res is not null , proto :" << res.content_type() << "\n"; 
             session->send(res.proto());
         }
     }
