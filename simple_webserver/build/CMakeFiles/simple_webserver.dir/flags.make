@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/kinko/cpp/cpp_study/cpp-study/simple_webserver/./include
 
 CXX_FLAGS = -std=gnu++14
 

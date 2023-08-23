@@ -153,6 +153,78 @@ main.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/main.cc.s
 .PHONY : main.cc.s
 
+src/http.o: src/http.cc.o
+.PHONY : src/http.o
+
+# target to build an object file
+src/http.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/http.cc.o
+.PHONY : src/http.cc.o
+
+src/http.i: src/http.cc.i
+.PHONY : src/http.i
+
+# target to preprocess a source file
+src/http.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/http.cc.i
+.PHONY : src/http.cc.i
+
+src/http.s: src/http.cc.s
+.PHONY : src/http.s
+
+# target to generate assembly for a file
+src/http.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/http.cc.s
+.PHONY : src/http.cc.s
+
+src/reponse.o: src/reponse.cc.o
+.PHONY : src/reponse.o
+
+# target to build an object file
+src/reponse.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/reponse.cc.o
+.PHONY : src/reponse.cc.o
+
+src/reponse.i: src/reponse.cc.i
+.PHONY : src/reponse.i
+
+# target to preprocess a source file
+src/reponse.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/reponse.cc.i
+.PHONY : src/reponse.cc.i
+
+src/reponse.s: src/reponse.cc.s
+.PHONY : src/reponse.s
+
+# target to generate assembly for a file
+src/reponse.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/reponse.cc.s
+.PHONY : src/reponse.cc.s
+
+src/service.o: src/service.cc.o
+.PHONY : src/service.o
+
+# target to build an object file
+src/service.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/service.cc.o
+.PHONY : src/service.cc.o
+
+src/service.i: src/service.cc.i
+.PHONY : src/service.i
+
+# target to preprocess a source file
+src/service.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/service.cc.i
+.PHONY : src/service.cc.i
+
+src/service.s: src/service.cc.s
+.PHONY : src/service.s
+
+# target to generate assembly for a file
+src/service.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_webserver.dir/build.make CMakeFiles/simple_webserver.dir/src/service.cc.s
+.PHONY : src/service.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +237,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/http.o"
+	@echo "... src/http.i"
+	@echo "... src/http.s"
+	@echo "... src/reponse.o"
+	@echo "... src/reponse.i"
+	@echo "... src/reponse.s"
+	@echo "... src/service.o"
+	@echo "... src/service.i"
+	@echo "... src/service.s"
 .PHONY : help
 
 

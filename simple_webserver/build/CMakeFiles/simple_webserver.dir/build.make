@@ -83,17 +83,65 @@ CMakeFiles/simple_webserver.dir/main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/simple_webserver.dir/main.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/main.cc -o CMakeFiles/simple_webserver.dir/main.cc.s
 
+CMakeFiles/simple_webserver.dir/src/http.cc.o: CMakeFiles/simple_webserver.dir/flags.make
+CMakeFiles/simple_webserver.dir/src/http.cc.o: /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/http.cc
+CMakeFiles/simple_webserver.dir/src/http.cc.o: CMakeFiles/simple_webserver.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kinko/cpp/cpp_study/cpp-study/simple_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/simple_webserver.dir/src/http.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_webserver.dir/src/http.cc.o -MF CMakeFiles/simple_webserver.dir/src/http.cc.o.d -o CMakeFiles/simple_webserver.dir/src/http.cc.o -c /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/http.cc
+
+CMakeFiles/simple_webserver.dir/src/http.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/simple_webserver.dir/src/http.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/http.cc > CMakeFiles/simple_webserver.dir/src/http.cc.i
+
+CMakeFiles/simple_webserver.dir/src/http.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/simple_webserver.dir/src/http.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/http.cc -o CMakeFiles/simple_webserver.dir/src/http.cc.s
+
+CMakeFiles/simple_webserver.dir/src/reponse.cc.o: CMakeFiles/simple_webserver.dir/flags.make
+CMakeFiles/simple_webserver.dir/src/reponse.cc.o: /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/reponse.cc
+CMakeFiles/simple_webserver.dir/src/reponse.cc.o: CMakeFiles/simple_webserver.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kinko/cpp/cpp_study/cpp-study/simple_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/simple_webserver.dir/src/reponse.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_webserver.dir/src/reponse.cc.o -MF CMakeFiles/simple_webserver.dir/src/reponse.cc.o.d -o CMakeFiles/simple_webserver.dir/src/reponse.cc.o -c /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/reponse.cc
+
+CMakeFiles/simple_webserver.dir/src/reponse.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/simple_webserver.dir/src/reponse.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/reponse.cc > CMakeFiles/simple_webserver.dir/src/reponse.cc.i
+
+CMakeFiles/simple_webserver.dir/src/reponse.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/simple_webserver.dir/src/reponse.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/reponse.cc -o CMakeFiles/simple_webserver.dir/src/reponse.cc.s
+
+CMakeFiles/simple_webserver.dir/src/service.cc.o: CMakeFiles/simple_webserver.dir/flags.make
+CMakeFiles/simple_webserver.dir/src/service.cc.o: /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/service.cc
+CMakeFiles/simple_webserver.dir/src/service.cc.o: CMakeFiles/simple_webserver.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kinko/cpp/cpp_study/cpp-study/simple_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/simple_webserver.dir/src/service.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_webserver.dir/src/service.cc.o -MF CMakeFiles/simple_webserver.dir/src/service.cc.o.d -o CMakeFiles/simple_webserver.dir/src/service.cc.o -c /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/service.cc
+
+CMakeFiles/simple_webserver.dir/src/service.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/simple_webserver.dir/src/service.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/service.cc > CMakeFiles/simple_webserver.dir/src/service.cc.i
+
+CMakeFiles/simple_webserver.dir/src/service.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/simple_webserver.dir/src/service.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kinko/cpp/cpp_study/cpp-study/simple_webserver/src/service.cc -o CMakeFiles/simple_webserver.dir/src/service.cc.s
+
 # Object files for target simple_webserver
 simple_webserver_OBJECTS = \
-"CMakeFiles/simple_webserver.dir/main.cc.o"
+"CMakeFiles/simple_webserver.dir/main.cc.o" \
+"CMakeFiles/simple_webserver.dir/src/http.cc.o" \
+"CMakeFiles/simple_webserver.dir/src/reponse.cc.o" \
+"CMakeFiles/simple_webserver.dir/src/service.cc.o"
 
 # External object files for target simple_webserver
 simple_webserver_EXTERNAL_OBJECTS =
 
 simple_webserver: CMakeFiles/simple_webserver.dir/main.cc.o
+simple_webserver: CMakeFiles/simple_webserver.dir/src/http.cc.o
+simple_webserver: CMakeFiles/simple_webserver.dir/src/reponse.cc.o
+simple_webserver: CMakeFiles/simple_webserver.dir/src/service.cc.o
 simple_webserver: CMakeFiles/simple_webserver.dir/build.make
 simple_webserver: CMakeFiles/simple_webserver.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kinko/cpp/cpp_study/cpp-study/simple_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable simple_webserver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kinko/cpp/cpp_study/cpp-study/simple_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable simple_webserver"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/simple_webserver.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
