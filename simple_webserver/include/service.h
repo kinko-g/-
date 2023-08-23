@@ -8,7 +8,7 @@
 #include "http.h"
 #include "response.h"
 
-static constexpr bool is_ambiguous_route(const char* route) {
+inline constexpr bool is_ambiguous_route(const char* route) {
     const char* iter = route;
     while(*iter) {
         if(*iter == '$') return true;
@@ -28,46 +28,7 @@ public :
     bool contains(const std::string& route) {
         return service_mapper_.count(route) > 0 || alias2main_.count(route);
     }
-
-    std::string contains_pattern(Request& req,std::vector<std::string>& route_split) {
-        auto& route = req.route;
-        // std::cout << "req.route : " << req.route << "\t" << service_mapper_.count(route) << "\n";
-        // std::cout << alias2main_.count(route) << "\n";
-        if(service_mapper_.count(route) > 0 && !service_mapper_[route].is_ambiguous) {
-            return route;
-        }
-        if(alias2main_.count(route) > 0 && !service_mapper_[alias2main_[route]].is_ambiguous) {
-            return alias2main_[route];
-        }
-        int i{};
-        std::string word{};
-        for(auto& p : service_mapper_) {
-            std::cout << p.first << "\t " << p.second.is_ambiguous << "\n";
-            if(!p.second.is_ambiguous) {
-                continue;
-            }
-            i = 0;
-            std::vector<std::string> route_params{};
-            std::stringstream ss{p.first};
-            while(std::getline(ss,word,'/')) {
-                if(i >= route_split.size() || (word != route_split[i] && word != "$")) {
-                    break;
-                }
-                std::cout << route_split[i] << "\t" << word << "\t" << i << "\n";
-                if(word == "$") {
-                    route_params.push_back(route_split[i]);
-                }
-                i ++;
-            }
-            std::cout << "i : " << i << "\n";
-            if(i == route_split.size()) {
-                std::cout << "pattern matched\n";
-                req.route_params = std::move(route_params);
-                return p.first;
-            }
-        }
-        return "";
-    }
+    std::string contains_pattern(Request& req,std::vector<std::string>& route_split);
 public:
     template <class F>
     void add_service(std::string& url ,F&& f,std::vector<const char*>&& alias) {
@@ -91,25 +52,17 @@ public:
             }
         };
         service_mapper_.insert({url,std::move(route_info)});
-        // for(auto& p : service_mapper_) {
-        //     std::cout << "add service : " << p.first << "\n";
-        // }
     }
     Response invoke(const std::string& route,Request& req) {
         if (service_mapper_.count(route) > 0) {
             return service_mapper_[route].cb(req);
         }
-        // else if(alias2main_.count(route) > 0) {
-        //     // std::cout << " route :" << route << " alia call \n ";
-        //     return service_mapper_[alias2main_[route]].cb(req);
-        // }
         return nullptr;
     }
 private:
     std::unordered_map<std::string,RouteInfo> service_mapper_;
     std::unordered_map<std::string,std::string> alias2main_;
 };
-
 
 class ServiceContainer {
 public:
@@ -121,27 +74,7 @@ public:
         services_.push_back(serv_sp);
         return *this;
     }
-    Response dispatch(Request& req) {
-        std::cout << " dispatch \n";
-        std::stringstream ss{req.route};
-        std::vector<std::string> route_split{};
-        std::string param{};
-        while(std::getline(ss,param,'/')) {
-            std::cout << "route split : " << param << "\n";
-            route_split.push_back(param);
-        }
-        std::string route{};
-        for(auto& serv : services_) {
-            route = serv->contains_pattern(req,route_split);
-            std::cout << "find parttern route : " << route << "\n";
-            if (!route.empty()) {
-                return serv->invoke(route,req);
-            }
-        }
-        std::cout << req.route << " not found\n";
-        // throw error 404
-        return nullptr;
-    }
+    Response dispatch(Request& req);
 private:
     std::vector<std::shared_ptr<MetaService>>services_;
 };
@@ -181,11 +114,14 @@ public:
     }
     ROUTER(image,"/image/$"); 
     Response image(Request& req) {
-        for(auto& param : req.route_params) {
-            std::cout << "param : " << param << "\n"; 
-        }
         std::string filename = "img.png";
-        return ImageResponse(filename);
+        std::string type = "png";
+        if(req.route_params.size() > 0) {
+            filename = "img1.jpeg";
+        }
+        ImageResponse res(filename);
+        res.set_type(type);
+        return res;
     }
     friend class __init;
 };
