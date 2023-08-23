@@ -19,7 +19,8 @@ static const char *method_str[] = {
 static const char *http_version_str[] = {
     "HTTP/1",
     "HTTP/1.1",
-    "HTTP/2"};
+    "HTTP/2"
+};
 const char *http_verenum2str(HttpVersion &version)
 {
     return http_version_str[static_cast<int>(version)];
@@ -66,7 +67,8 @@ struct HttpReqProto {
     std::string route;
     std::unordered_map <std::string,std::string> context;
     std::string body;
-
+    std::vector<std::string> route_params;
+    
     static Method method2enum( std :: string & method ){
         for (std::size_t i = 0;i < sizeof(method_str) / sizeof(char*); i ++){
             if (strcmp(method_str[i],method.c_str()) == 0){
